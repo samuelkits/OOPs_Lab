@@ -1,0 +1,48 @@
+import java.util.Scanner;
+
+public class Ex1_10 {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int choice;
+        int basicCost = 499;
+        int totalCost = 0;
+
+        do {
+            System.out.println("Menu:");
+            System.out.println("1. Basics - 499");
+            System.out.println("2. Kids - 200 + Basics");
+            System.out.println("3. Sports - 700 + Basics");
+            System.out.println("4. English - 300 + Basics");
+            System.out.println("5. Exit");
+            System.out.print("Enter your choice: ");
+            choice = scanner.nextInt();
+
+            switch (choice) {
+                case 1:
+                    totalCost = basicCost;
+                    System.out.println("You have chosen Basics. Total cost: " + totalCost);
+                    break;
+                case 2:
+                    totalCost = basicCost + 200;
+                    System.out.println("You have chosen Kids. Total cost: " + totalCost);
+                    break;
+                case 3:
+                    totalCost = basicCost + 700;
+                    System.out.println("You have chosen Sports. Total cost: " + totalCost);
+                    break;
+                case 4:
+                    totalCost = basicCost + 300;
+                    System.out.println("You have chosen English. Total cost: " + totalCost);
+                    break;
+                case 5:
+                    System.out.println("Exiting the program, Thankyou...");
+                    break;
+                default:
+                    System.out.println("Invalid choice. Please try again.");
+            }
+            System.out.println();
+        } while (choice != 5);
+
+        scanner.close();
+    }
+}
