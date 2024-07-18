@@ -27,6 +27,5 @@ public class Ex2 {
         
         System.out.println("The greatest number is: " + greatest);
         
-        scanner.close();
     }
 }
