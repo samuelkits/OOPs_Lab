@@ -1,3 +1,23 @@
+Algorithm:
+
+1. **Input**:
+   - The input string `s` (e.g., `"abcdab"`).
+
+2. **Frequency Counting**:
+   - Initialize an integer array `frequency` of size 26 (for lowercase English letters).
+   - Iterate through each character in the input string:
+     - Increment the frequency count for the corresponding letter (e.g., `frequency[c - 'a']++`).
+
+3. **Find First Non-Repeated Character**:
+   - Iterate through the input string again:
+     - If the frequency count for the current character is 1, return that character (i.e., the first non-repeated character).
+
+4. **Output**:
+   - If no such character is found, return the null character (`'\0'`).
+
+The provided Java code accomplishes this algorithm. For the input `"abcdab"`, the first non-repeated character is `'c'`.
+
+Program;
 public class Ex2_7 {
     public static void main(String[] args) {
         String input = "abcdab";
