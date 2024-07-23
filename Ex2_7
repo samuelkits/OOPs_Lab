@@ -1,48 +1,22 @@
-Algorithm:
+import java.util.Scanner;
 
-1. **Input**:
-   - The input string `s` (e.g., `"abcdab"`).
-
-2. **Frequency Counting**:
-   - Initialize an integer array `frequency` of size 26 (for lowercase English letters).
-   - Iterate through each character in the input string:
-     - Increment the frequency count for the corresponding letter (e.g., `frequency[c - 'a']++`).
-
-3. **Find First Non-Repeated Character**:
-   - Iterate through the input string again:
-     - If the frequency count for the current character is 1, return that character (i.e., the first non-repeated character).
-
-4. **Output**:
-   - If no such character is found, return the null character (`'\0'`).
-
-The provided Java code accomplishes this algorithm. For the input `"abcdab"`, the first non-repeated character is `'c'`.
-
-Program;
 public class Ex2_7 {
     public static void main(String[] args) {
-        String input = "abcdab";
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Input a String: ");
+        String word = scanner.next();
+        boolean flag = true;
 
-        char result = findFirstNonRepeatedChar(input);
-        if (result != '\0') {
-            System.out.println("First non-repeated character: " + result);
-        } else {
-            System.out.println("No non-repeated character found.");
-        }
-    }
-
-    public static char findFirstNonRepeatedChar(String s) {
-        int[] frequency = new int[26];
-
-        for (char c : s.toCharArray()) {
-            frequency[c - 'a']++;
-        }
-
-        for (char c : s.toCharArray()) {
-            if (frequency[c - 'a'] == 1) {
-                return c;
+        for (char i : word.toCharArray()) {
+            if (word.indexOf(i) == word.lastIndexOf(i)) {
+                System.out.println("The first non-repeating character is: " + i);
+                flag = false;
+                break;
             }
         }
 
-        return '\0';
+        if (flag) {
+            System.out.println("There is no non-repeating character in the input string.");
+        }
     }
 }
