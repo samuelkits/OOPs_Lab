@@ -1,0 +1,28 @@
+public class Ex2_7 {
+    public static void main(String[] args) {
+        String input = "abcdab";
+
+        char result = findFirstNonRepeatedChar(input);
+        if (result != '\0') {
+            System.out.println("First non-repeated character: " + result);
+        } else {
+            System.out.println("No non-repeated character found.");
+        }
+    }
+
+    public static char findFirstNonRepeatedChar(String s) {
+        int[] frequency = new int[26];
+
+        for (char c : s.toCharArray()) {
+            frequency[c - 'a']++;
+        }
+
+        for (char c : s.toCharArray()) {
+            if (frequency[c - 'a'] == 1) {
+                return c;
+            }
+        }
+
+        return '\0';
+    }
+}
