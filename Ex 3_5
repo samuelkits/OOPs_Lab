@@ -1,0 +1,22 @@
+import java.util.Scanner;
+
+public class VowelReplacer {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter a long paragraph of text:");
+        String inputText = scanner.nextLine();
+
+        System.out.println("Enter the character to replace vowels with:");
+        char replacementChar = scanner.next().charAt(0);
+        scanner.close();
+
+        // Replace vowels with the specified character
+        String modifiedText = inputText.replaceAll("[aeiouAEIOU]", String.valueOf(replacementChar));
+
+        // Print the original and modified text
+        System.out.println("Original text:");
+        System.out.println(inputText);
+        System.out.println("Modified text:");
+        System.out.println(modifiedText);
+    }
+}
