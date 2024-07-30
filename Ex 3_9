@@ -1,0 +1,17 @@
+import java.util.Scanner;
+
+public class VowelRemover {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter a sentence (not more than 80 characters):");
+        String inputSentence = scanner.nextLine();
+        scanner.close();
+
+        // Remove vowels from the sentence
+        String modifiedSentence = inputSentence.replaceAll("[aeiouAEIOU]", "");
+
+        // Print the modified sentence
+        System.out.println("Modified sentence:");
+        System.out.println(modifiedSentence);
+    }
+}
