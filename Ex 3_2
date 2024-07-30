@@ -1,13 +1,14 @@
+package Ex3;
+
 import java.util.Scanner;
 
-public class TextAnalyzer {
+public class Ex3_2 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter a long paragraph of text:");
+        System.out.println("Enter a long paragraph of text: ");
         String inputText = scanner.nextLine();
         scanner.close();
 
-        // Calculate the number of spaces
         int spaceCount = 0;
         for (char c : inputText.toCharArray()) {
             if (c == ' ') {
@@ -15,18 +16,14 @@ public class TextAnalyzer {
             }
         }
 
-        // Split the text into words and calculate the word count
         String[] words = inputText.split("\\s+");
         int wordCount = words.length;
 
-        // Calculate the number of characters
         int charCount = inputText.length();
 
-        // Split the text into lines and calculate the line count
         String[] lines = inputText.split("\n");
         int lineCount = lines.length;
 
-        // Print the results
         System.out.println("Number of spaces: " + spaceCount);
         System.out.println("Number of words: " + wordCount);
         System.out.println("Number of characters: " + charCount);
