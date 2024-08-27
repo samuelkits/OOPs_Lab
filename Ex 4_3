@@ -78,3 +78,10 @@ class Distance {
         d3.display();
     }
 }
+
+Output:
+Distance 1: Feet: 5, Inches: 9
+Distance 2: Feet: 3, Inches: 11
+Resultant Distance: Feet: 9, Inches: 8
+
+=== Code Execution Successful ===
