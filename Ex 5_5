@@ -1,24 +1,20 @@
 import java.util.Scanner;
 
-// Superclass FUEL
 class FUEL {
     protected String fuel_name;
     protected String state;
     protected double cost;
 
-    // Constructor
     public FUEL(String fuel_name, String state, double cost) {
         this.fuel_name = fuel_name;
         this.state = state;
         this.cost = cost;
     }
 
-    // Method to calculate cost (to be overridden)
     public double calculateCost(double quantity) {
         return cost * quantity;
     }
 
-    // Method to display details (to be overridden)
     public void displayDetails(String customerName, double quantity) {
         System.out.println("Customer Name: " + customerName);
         System.out.println("State: " + state);
@@ -28,7 +24,6 @@ class FUEL {
     }
 }
 
-// Subclass Petrol
 class Petrol extends FUEL {
     public Petrol(String state) {
         super("Petrol", state, getCostByState(state));
@@ -48,7 +43,6 @@ class Petrol extends FUEL {
     }
 }
 
-// Subclass Diesel
 class Diesel extends FUEL {
     public Diesel(String state) {
         super("Diesel", state, getCostByState(state));
@@ -68,7 +62,6 @@ class Diesel extends FUEL {
     }
 }
 
-// Subclass Kerosene
 class Kerosene extends FUEL {
     public Kerosene(String state) {
         super("Kerosene", state, getCostByState(state));
@@ -88,7 +81,6 @@ class Kerosene extends FUEL {
     }
 }
 
-// Subclass AutoLPG
 class AutoLPG extends FUEL {
     public AutoLPG(String state) {
         super("Auto LPG", state, getCostByState(state));
@@ -108,7 +100,6 @@ class AutoLPG extends FUEL {
     }
 }
 
-// Main class with menu-driven options
 public class FuelCostCalculator {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -133,7 +124,7 @@ public class FuelCostCalculator {
             }
 
             System.out.print("Enter your state (Tamil Nadu/Kerala/Karnataka): ");
-            scanner.nextLine(); // consume newline
+            scanner.nextLine();
             String state = scanner.nextLine();
 
             System.out.print("Enter quantity required: ");
