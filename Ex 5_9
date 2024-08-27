@@ -1,0 +1,142 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+class Department {
+    protected String deptName;
+    protected String hodName;
+    protected int noOfFaculty;
+    protected int noOfStudents;
+    protected int noOfPrograms;
+
+    public Department(String deptName, String hodName, int noOfFaculty, int noOfStudents, int noOfPrograms) {
+        this.deptName = deptName;
+        this.hodName = hodName;
+        this.noOfFaculty = noOfFaculty;
+        this.noOfStudents = noOfStudents;
+        this.noOfPrograms = noOfPrograms;
+    }
+
+    public void displayDetails() {
+        System.out.println("Department Name: " + deptName);
+        System.out.println("HOD Name: " + hodName);
+        System.out.println("Number of Faculty: " + noOfFaculty);
+        System.out.println("Number of Students: " + noOfStudents);
+        System.out.println("Number of Programs: " + noOfPrograms);
+    }
+}
+
+class CSE extends Department {
+    public CSE(String hodName, int noOfFaculty, int noOfStudents, int noOfPrograms) {
+        super("CSE", hodName, noOfFaculty, noOfStudents, noOfPrograms);
+    }
+
+    @Override
+    public void displayDetails() {
+        super.displayDetails();
+    }
+}
+class AID extends Department {
+    public AID(String hodName, int noOfFaculty, int noOfStudents, int noOfPrograms) {
+        super("AI&DS", hodName, noOfFaculty, noOfStudents, noOfPrograms);
+    }
+
+    @Override
+    public void displayDetails() {
+        super.displayDetails();
+    }
+}
+
+class CE extends Department {
+    public CE(String hodName, int noOfFaculty, int noOfStudents, int noOfPrograms) {
+        super("CE", hodName, noOfFaculty, noOfStudents, noOfPrograms);
+    }
+
+    @Override
+    public void displayDetails() {
+        super.displayDetails();
+    }
+}
+
+public class SchoolDepartmentDetails {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        ArrayList<Department> departments = new ArrayList<>();
+
+        while (true) {
+            System.out.println("\nMenu:");
+            System.out.println("1. Add Department Details");
+            System.out.println("2. Display All Departments");
+            System.out.println("3. Display Department by Name");
+            System.out.println("4. Exit");
+            System.out.print("Enter your choice: ");
+            int choice = scanner.nextInt();
+            scanner.nextLine(); // consume newline
+
+            if (choice == 4) {
+                System.out.println("Exiting...");
+                break;
+            }
+
+            switch (choice) {
+                case 1:
+                    System.out.print("Enter Department Name (CSE/AI&DS/CE): ");
+                    String deptName = scanner.nextLine();
+                    System.out.print("Enter HOD Name: ");
+                    String hodName = scanner.nextLine();
+                    System.out.print("Enter Number of Faculty: ");
+                    int noOfFaculty = scanner.nextInt();
+                    System.out.print("Enter Number of Students: ");
+                    int noOfStudents = scanner.nextInt();
+                    System.out.print("Enter Number of Programs: ");
+                    int noOfPrograms = scanner.nextInt();
+                    scanner.nextLine(); // consume newline
+
+                    Department dept = null;
+                    switch (deptName) {
+                        case "CSE":
+                            dept = new CSE(hodName, noOfFaculty, noOfStudents, noOfPrograms);
+                            break;
+                        case "AI&DS":
+                            dept = new AID(hodName, noOfFaculty, noOfStudents, noOfPrograms);
+                            break;
+                        case "CE":
+                            dept = new CE(hodName, noOfFaculty, noOfStudents, noOfPrograms);
+                            break;
+                        default:
+                            System.out.println("Invalid Department Name.");
+                            continue;
+                    }
+                    departments.add(dept);
+                    break;
+
+                case 2:
+                    for (Department department : departments) {
+                        department.displayDetails();
+                        System.out.println();
+                    }
+                    break;
+
+                case 3:
+                    System.out.print("Enter Department Name to Display (CSE/AI&DS/CE): ");
+                    String searchDeptName = scanner.nextLine();
+                    boolean found = false;
+                    for (Department department : departments) {
+                        if (department.deptName.equals(searchDeptName)) {
+                            department.displayDetails();
+                            found = true;
+                            break;
+                        }
+                    }
+                    if (!found) {
+                        System.out.println("Department not found.");
+                    }
+                    break;
+
+                default:
+                    System.out.println("Invalid choice. Please try again.");
+            }
+        }
+
+        scanner.close();
+    }
+}
