@@ -1,17 +1,4 @@
-**Algorithm:**
-Input:
-Read a string from the user (e.g., "abcdab").
-Search Process:
-Initialize a boolean flag (flag) to track whether a non-repeating character is found.
-Iterate through each character in the input string:
-Check if the index of the current character is the same as its last index (using indexOf() and lastIndexOf()).
-If so, it’s a non-repeating character.
-Print the first non-repeating character found and set the flag to false.
-Break out of the loop.
-Output:
-If no non-repeating character is found, print a message indicating that there is none.
 
-**Program:**
 import java.util.Scanner;
 
 public class Ex2_7 {
