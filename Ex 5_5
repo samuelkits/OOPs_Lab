@@ -1,0 +1,165 @@
+import java.util.Scanner;
+
+// Superclass FUEL
+class FUEL {
+    protected String fuel_name;
+    protected String state;
+    protected double cost;
+
+    // Constructor
+    public FUEL(String fuel_name, String state, double cost) {
+        this.fuel_name = fuel_name;
+        this.state = state;
+        this.cost = cost;
+    }
+
+    // Method to calculate cost (to be overridden)
+    public double calculateCost(double quantity) {
+        return cost * quantity;
+    }
+
+    // Method to display details (to be overridden)
+    public void displayDetails(String customerName, double quantity) {
+        System.out.println("Customer Name: " + customerName);
+        System.out.println("State: " + state);
+        System.out.println("Fuel: " + fuel_name);
+        System.out.println("Quantity: " + quantity);
+        System.out.println("Total Cost: " + calculateCost(quantity));
+    }
+}
+
+// Subclass Petrol
+class Petrol extends FUEL {
+    public Petrol(String state) {
+        super("Petrol", state, getCostByState(state));
+    }
+
+    private static double getCostByState(String state) {
+        switch (state) {
+            case "Tamil Nadu":
+                return 97.46;
+            case "Kerala":
+                return 98.35;
+            case "Karnataka":
+                return 99.61;
+            default:
+                return 0;
+        }
+    }
+}
+
+// Subclass Diesel
+class Diesel extends FUEL {
+    public Diesel(String state) {
+        super("Diesel", state, getCostByState(state));
+    }
+
+    private static double getCostByState(String state) {
+        switch (state) {
+            case "Tamil Nadu":
+                return 96.08;
+            case "Kerala":
+                return 97.37;
+            case "Karnataka":
+                return 98.61;
+            default:
+                return 0;
+        }
+    }
+}
+
+// Subclass Kerosene
+class Kerosene extends FUEL {
+    public Kerosene(String state) {
+        super("Kerosene", state, getCostByState(state));
+    }
+
+    private static double getCostByState(String state) {
+        switch (state) {
+            case "Tamil Nadu":
+                return 25.7;
+            case "Kerala":
+                return 26.4;
+            case "Karnataka":
+                return 27.6;
+            default:
+                return 0;
+        }
+    }
+}
+
+// Subclass AutoLPG
+class AutoLPG extends FUEL {
+    public AutoLPG(String state) {
+        super("Auto LPG", state, getCostByState(state));
+    }
+
+    private static double getCostByState(String state) {
+        switch (state) {
+            case "Tamil Nadu":
+                return 70.33;
+            case "Kerala":
+                return 71.27;
+            case "Karnataka":
+                return 72.08;
+            default:
+                return 0;
+        }
+    }
+}
+
+// Main class with menu-driven options
+public class FuelCostCalculator {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        FUEL fuel = null;
+
+        System.out.print("Enter your name: ");
+        String customerName = scanner.nextLine();
+
+        while (true) {
+            System.out.println("\nMenu:");
+            System.out.println("1. Calculate cost for Petrol");
+            System.out.println("2. Calculate cost for Diesel");
+            System.out.println("3. Calculate cost for Kerosene");
+            System.out.println("4. Calculate cost for Auto LPG");
+            System.out.println("5. Exit");
+            System.out.print("Enter your choice: ");
+            int choice = scanner.nextInt();
+
+            if (choice == 5) {
+                System.out.println("Exiting...");
+                break;
+            }
+
+            System.out.print("Enter your state (Tamil Nadu/Kerala/Karnataka): ");
+            scanner.nextLine(); // consume newline
+            String state = scanner.nextLine();
+
+            System.out.print("Enter quantity required: ");
+            double quantity = scanner.nextDouble();
+
+            switch (choice) {
+                case 1:
+                    fuel = new Petrol(state);
+                    break;
+                case 2:
+                    fuel = new Diesel(state);
+                    break;
+                case 3:
+                    fuel = new Kerosene(state);
+                    break;
+                case 4:
+                    fuel = new AutoLPG(state);
+                    break;
+                default:
+                    System.out.println("Invalid choice. Please try again.");
+                    continue;
+            }
+
+            fuel.displayDetails(customerName, quantity);
+        }
+
+        scanner.close();
+    }
+}
