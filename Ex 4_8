@@ -1,0 +1,181 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+class Department {
+    private String deptName;
+    private String hodName;
+    private int noOfFaculty;
+    private int noOfStudents;
+    private int noOfPrograms;
+
+    // Default constructor
+    public Department() {
+        this.deptName = "";
+        this.hodName = "";
+        this.noOfFaculty = 0;
+        this.noOfStudents = 0;
+        this.noOfPrograms = 0;
+    }
+
+    // Parameterized constructor
+    public Department(String deptName, String hodName, int noOfFaculty, int noOfStudents, int noOfPrograms) {
+        this.deptName = deptName;
+        this.hodName = hodName;
+        this.noOfFaculty = noOfFaculty;
+        this.noOfStudents = noOfStudents;
+        this.noOfPrograms = noOfPrograms;
+    }
+
+    // Getter and Setter methods
+    public String getDeptName() {
+        return deptName;
+    }
+
+    public void setDeptName(String deptName) {
+        this.deptName = deptName;
+    }
+
+    public String getHodName() {
+        return hodName;
+    }
+
+    public void setHodName(String hodName) {
+        this.hodName = hodName;
+    }
+
+    public int getNoOfFaculty() {
+        return noOfFaculty;
+    }
+
+    public void setNoOfFaculty(int noOfFaculty) {
+        this.noOfFaculty = noOfFaculty;
+    }
+
+    public int getNoOfStudents() {
+        return noOfStudents;
+    }
+
+    public void setNoOfStudents(int noOfStudents) {
+        this.noOfStudents = noOfStudents;
+    }
+
+    public int getNoOfPrograms() {
+        return noOfPrograms;
+    }
+
+    public void setNoOfPrograms(int noOfPrograms) {
+        this.noOfPrograms = noOfPrograms;
+    }
+
+    // Method to display department details
+    public void display() {
+        System.out.println("Department Name: " + deptName);
+        System.out.println("HOD Name: " + hodName);
+        System.out.println("Number of Faculty: " + noOfFaculty);
+        System.out.println("Number of Students: " + noOfStudents);
+        System.out.println("Number of Programs: " + noOfPrograms);
+    }
+}
+
+public class University {
+    private static ArrayList<Department> departments = new ArrayList<>();
+    private static Scanner scanner = new Scanner(System.in);
+
+    public static void main(String[] args) {
+        int choice;
+        do {
+            System.out.println("\nMenu:");
+            System.out.println("1. Add Department");
+            System.out.println("2. Edit Department");
+            System.out.println("3. Delete Department");
+            System.out.println("4. Display Departments");
+            System.out.println("5. Exit");
+            System.out.print("Enter your choice: ");
+            choice = scanner.nextInt();
+            scanner.nextLine(); // Consume newline
+
+            switch (choice) {
+                case 1:
+                    addDepartment();
+                    break;
+                case 2:
+                    editDepartment();
+                    break;
+                case 3:
+                    deleteDepartment();
+                    break;
+                case 4:
+                    displayDepartments();
+                    break;
+                case 5:
+                    System.out.println("Exiting...");
+                    break;
+                default:
+                    System.out.println("Invalid choice! Please try again.");
+            }
+        } while (choice != 5);
+    }
+
+    private static void addDepartment() {
+        System.out.print("Enter Department Name: ");
+        String deptName = scanner.nextLine();
+        System.out.print("Enter HOD Name: ");
+        String hodName = scanner.nextLine();
+        System.out.print("Enter Number of Faculty: ");
+        int noOfFaculty = scanner.nextInt();
+        System.out.print("Enter Number of Students: ");
+        int noOfStudents = scanner.nextInt();
+        System.out.print("Enter Number of Programs: ");
+        int noOfPrograms = scanner.nextInt();
+        scanner.nextLine(); // Consume newline
+
+        Department dept = new Department(deptName, hodName, noOfFaculty, noOfStudents, noOfPrograms);
+        departments.add(dept);
+        System.out.println("Department added successfully!");
+    }
+
+    private static void editDepartment() {
+        System.out.print("Enter Department Name to Edit: ");
+        String deptName = scanner.nextLine();
+        for (Department dept : departments) {
+            if (dept.getDeptName().equalsIgnoreCase(deptName)) {
+                System.out.print("Enter new HOD Name: ");
+                dept.setHodName(scanner.nextLine());
+                System.out.print("Enter new Number of Faculty: ");
+                dept.setNoOfFaculty(scanner.nextInt());
+                System.out.print("Enter new Number of Students: ");
+                dept.setNoOfStudents(scanner.nextInt());
+                System.out.print("Enter new Number of Programs: ");
+                dept.setNoOfPrograms(scanner.nextInt());
+                scanner.nextLine(); // Consume newline
+                System.out.println("Department details updated successfully!");
+                return;
+            }
+        }
+        System.out.println("Department not found!");
+    }
+
+    private static void deleteDepartment() {
+        System.out.print("Enter Department Name to Delete: ");
+        String deptName = scanner.nextLine();
+        for (Department dept : departments) {
+            if (dept.getDeptName().equalsIgnoreCase(deptName)) {
+                departments.remove(dept);
+                System.out.println("Department deleted successfully!");
+                return;
+            }
+        }
+        System.out.println("Department not found!");
+    }
+
+    private static void displayDepartments() {
+        if (departments.isEmpty()) {
+            System.out.println("No departments to display.");
+        } else {
+            for (Department dept : departments) {
+                dept.display();
+                System.out.println();
+            }
+        }
+    }
+}
