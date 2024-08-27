@@ -1,0 +1,80 @@
+Class Definition:
+Define a class named Distance with two private member variables: feet and inches.
+
+Default Constructor:
+Create a default constructor that initializes feet and inches to 0.
+
+Parameterized Constructor:
+Create a parameterized constructor that initializes feet and inches to the given values.
+
+Display Method:
+Define a method display that prints the values of feet and inches.
+
+Add Method:
+Define a method add that takes another Distance object as an argument.
+
+Create a new Distance object named result.
+Add the inches of the current object and the passed object, store the sum in result.inches.
+Add the feet of the current object and the passed object, plus any extra feet from the inches sum, store the sum in result.feet.
+Adjust result.inches to be less than 12 by taking the remainder when divided by 12.
+Return the result object.
+
+Main Method:
+In the main method, create two Distance objects d1 and d2 with specific values.
+Create an uninitialized Distance object d3.
+Add d1 and d2 using the add method and store the result in d3.
+
+Display the values of d1, d2, and d3 using the display method.
+
+
+Program:
+class Distance {
+    private int feet;
+    private int inches;
+
+    // Default constructor
+    public Distance() {
+        this.feet = 0;
+        this.inches = 0;
+    }
+
+    // Parameterized constructor
+    public Distance(int feet, int inches) {
+        this.feet = feet;
+        this.inches = inches;
+    }
+
+    // Method to display distance
+    public void display() {
+        System.out.println("Feet: " + feet + ", Inches: " + inches);
+    }
+
+    // Method to add two distances
+    public Distance add(Distance d) {
+        Distance result = new Distance();
+        result.inches = this.inches + d.inches;
+        result.feet = this.feet + d.feet + result.inches / 12;
+        result.inches %= 12;
+        return result;
+    }
+
+    public static void main(String[] args) {
+        // Creating two initialized distance objects
+        Distance d1 = new Distance(5, 9);
+        Distance d2 = new Distance(3, 11);
+
+        // Creating an uninitialized distance object
+        Distance d3 = new Distance();
+
+        // Adding the two initialized distances
+        d3 = d1.add(d2);
+
+        // Displaying the distances
+        System.out.print("Distance 1: ");
+        d1.display();
+        System.out.print("Distance 2: ");
+        d2.display();
+        System.out.print("Resultant Distance: ");
+        d3.display();
+    }
+}
