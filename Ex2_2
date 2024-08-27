@@ -1,11 +1,4 @@
-Algorithm:
-1. Initialize a boolean array prime of size n + 1 (where n is 100) and set all elements to true.
-2. Iterate through the array from index 2 to the square root of n:
-3. If prime[p] is true, mark all multiples of p (greater than or equal to p*p) as false.
-4. The unmarked indices represent prime numbers.
-5. Print the prime numbers found.
 
-Program:
 public class Ex2_2 {
     public static void main(String[] args) {
         int n = 100;
