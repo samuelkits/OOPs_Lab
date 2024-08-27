@@ -1,0 +1,99 @@
+import java.util.Scanner;
+
+// Superclass Shape
+class Shape {
+    protected double dim1;
+    protected double dim2;
+
+    // Setter methods
+    public void setDim1(double dim1) {
+        this.dim1 = dim1;
+    }
+
+    public void setDim2(double dim2) {
+        this.dim2 = dim2;
+    }
+
+    // Method to compute area (to be overridden)
+    public void find_area() {
+        System.out.println("Area cannot be determined for undefined shape.");
+    }
+
+    // Method to display area (to be overridden)
+    public void display_area() {
+        System.out.println("Display area method in Shape class.");
+    }
+}
+
+// Subclass Triangle
+class Triangle extends Shape {
+    @Override
+    public void find_area() {
+        double area = 0.5 * dim1 * dim2;
+        System.out.println("Area of Triangle: " + area);
+    }
+
+    @Override
+    public void display_area() {
+        find_area();
+    }
+}
+
+// Subclass Rectangle
+class Rectangle extends Shape {
+    @Override
+    public void find_area() {
+        double area = dim1 * dim2;
+        System.out.println("Area of Rectangle: " + area);
+    }
+
+    @Override
+    public void display_area() {
+        find_area();
+    }
+}
+
+// Main class with menu-driven options
+public class ShapeAreaCalculator {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Shape shape = null;
+
+        while (true) {
+            System.out.println("\nMenu:");
+            System.out.println("1. Calculate area of Triangle");
+            System.out.println("2. Calculate area of Rectangle");
+            System.out.println("3. Exit");
+            System.out.print("Enter your choice: ");
+            int choice = scanner.nextInt();
+
+            if (choice == 3) {
+                System.out.println("Exiting...");
+                break;
+            }
+
+            System.out.print("Enter dimension 1: ");
+            double dim1 = scanner.nextDouble();
+            System.out.print("Enter dimension 2: ");
+            double dim2 = scanner.nextDouble();
+
+            switch (choice) {
+                case 1:
+                    shape = new Triangle();
+                    break;
+                case 2:
+                    shape = new Rectangle();
+                    break;
+                default:
+                    System.out.println("Invalid choice. Please try again.");
+                    continue;
+            }
+
+            shape.setDim1(dim1);
+            shape.setDim2(dim2);
+            shape.display_area();
+        }
+
+        scanner.close();
+    }
+}
