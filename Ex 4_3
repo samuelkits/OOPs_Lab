@@ -1,31 +1,3 @@
-Class Definition:
-Define a class named Distance with two private member variables: feet and inches.
-
-Default Constructor:
-Create a default constructor that initializes feet and inches to 0.
-
-Parameterized Constructor:
-Create a parameterized constructor that initializes feet and inches to the given values.
-
-Display Method:
-Define a method display that prints the values of feet and inches.
-
-Add Method:
-Define a method add that takes another Distance object as an argument.
-
-Create a new Distance object named result.
-Add the inches of the current object and the passed object, store the sum in result.inches.
-Add the feet of the current object and the passed object, plus any extra feet from the inches sum, store the sum in result.feet.
-Adjust result.inches to be less than 12 by taking the remainder when divided by 12.
-Return the result object.
-
-Main Method:
-In the main method, create two Distance objects d1 and d2 with specific values.
-Create an uninitialized Distance object d3.
-Add d1 and d2 using the add method and store the result in d3.
-
-Display the values of d1, d2, and d3 using the display method.
-
 
 Program:
 class Distance {
@@ -79,9 +51,3 @@ class Distance {
     }
 }
 
-Output:
-Distance 1: Feet: 5, Inches: 9
-Distance 2: Feet: 3, Inches: 11
-Resultant Distance: Feet: 9, Inches: 8
-
-=== Code Execution Successful ===
