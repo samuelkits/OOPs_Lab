@@ -8,7 +8,6 @@ class Department {
     private int noOfStudents;
     private int noOfPrograms;
 
-    // Default constructor
     public Department() {
         this.deptName = "";
         this.hodName = "";
@@ -17,7 +16,6 @@ class Department {
         this.noOfPrograms = 0;
     }
 
-    // Parameterized constructor
     public Department(String deptName, String hodName, int noOfFaculty, int noOfStudents, int noOfPrograms) {
         this.deptName = deptName;
         this.hodName = hodName;
@@ -26,7 +24,6 @@ class Department {
         this.noOfPrograms = noOfPrograms;
     }
 
-    // Getter and Setter methods
     public String getDeptName() {
         return deptName;
     }
@@ -67,7 +64,6 @@ class Department {
         this.noOfPrograms = noOfPrograms;
     }
 
-    // Method to display department details
     public void display() {
         System.out.println("Department Name: " + deptName);
         System.out.println("HOD Name: " + hodName);
