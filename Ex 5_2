@@ -1,11 +1,9 @@
 import java.util.Scanner;
 
-// Superclass Shape
 class Shape {
     protected double dim1;
     protected double dim2;
 
-    // Setter methods
     public void setDim1(double dim1) {
         this.dim1 = dim1;
     }
@@ -13,8 +11,6 @@ class Shape {
     public void setDim2(double dim2) {
         this.dim2 = dim2;
     }
-
-    // Method to compute area (to be overridden)
     public void find_area() {
         System.out.println("Area cannot be determined for undefined shape.");
     }
@@ -25,7 +21,6 @@ class Shape {
     }
 }
 
-// Subclass Triangle
 class Triangle extends Shape {
     @Override
     public void find_area() {
@@ -39,7 +34,6 @@ class Triangle extends Shape {
     }
 }
 
-// Subclass Rectangle
 class Rectangle extends Shape {
     @Override
     public void find_area() {
@@ -53,7 +47,6 @@ class Rectangle extends Shape {
     }
 }
 
-// Main class with menu-driven options
 public class ShapeAreaCalculator {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
