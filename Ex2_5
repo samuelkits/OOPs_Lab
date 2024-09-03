@@ -1,6 +1,10 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
 public class Ex2_5 {
     public static void main(String[] args) {
+        System.out.println("Samuel Sawyer URK23CS1136");
         Scanner scanner = new Scanner(System.in);
 
         // Input: User-defined array
