@@ -1,0 +1,156 @@
+import java.util.Scanner;
+
+interface MathsOperable {
+    double add(double a, double b);
+    double sub(double a, double b);
+    double mul(double a, double b);
+    double div(double a, double b);
+    double mod(double a, double b);
+}
+
+interface TrigonometricOperable {
+    double sine(double angle);
+    double cosine(double angle);
+    double tan(double angle);
+}
+
+abstract class Calculator {
+    protected double no1;
+    protected double no2;
+    protected double result;
+
+    public Calculator(double no1, double no2) {
+        this.no1 = no1;
+        this.no2 = no2;
+    }
+
+    public void display() {
+        System.out.println("Result: " + result);
+    }
+}
+
+class Operation extends Calculator implements MathsOperable, TrigonometricOperable {
+
+    public Operation(double no1, double no2) {
+        super(no1, no2);
+    }
+
+    @Override
+    public double add(double a, double b) {
+        return a + b;
+    }
+
+    @Override
+    public double sub(double a, double b) {
+        return a - b;
+    }
+
+    @Override
+    public double mul(double a, double b) {
+        return a * b;
+    }
+
+    @Override
+    public double div(double a, double b) {
+        if (b != 0) {
+            return a / b;
+        } else {
+            System.out.println("Division by zero is not allowed.");
+            return Double.NaN;
+        }
+    }
+
+    @Override
+    public double mod(double a, double b) {
+        return a % b;
+    }
+
+    @Override
+    public double sine(double angle) {
+        return Math.sin(Math.toRadians(angle));
+    }
+
+    @Override
+    public double cosine(double angle) {
+        return Math.cos(Math.toRadians(angle));
+    }
+
+    @Override
+    public double tan(double angle) {
+        return Math.tan(Math.toRadians(angle));
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter first number:");
+        double no1 = scanner.nextDouble();
+        System.out.println("Enter second number:");
+        double no2 = scanner.nextDouble();
+
+        Operation operation = new Operation(no1, no2);
+
+        while (true) {
+            System.out.println("\nMenu:");
+            System.out.println("1. Add");
+            System.out.println("2. Subtract");
+            System.out.println("3. Multiply");
+            System.out.println("4. Divide");
+            System.out.println("5. Modulus");
+            System.out.println("6. Sine");
+            System.out.println("7. Cosine");
+            System.out.println("8. Tangent");
+            System.out.println("9. Exit");
+            System.out.print("Choose an operation: ");
+            int choice = scanner.nextInt();
+
+            switch (choice) {
+                case 1:
+                    operation.result = operation.add(no1, no2);
+                    operation.display();
+                    break;
+                case 2:
+                    operation.result = operation.sub(no1, no2);
+                    operation.display();
+                    break;
+                case 3:
+                    operation.result = operation.mul(no1, no2);
+                    operation.display();
+                    break;
+                case 4:
+                    operation.result = operation.div(no1, no2);
+                    operation.display();
+                    break;
+                case 5:
+                    operation.result = operation.mod(no1, no2);
+                    operation.display();
+                    break;
+                case 6:
+                    System.out.print("Enter angle in degrees: ");
+                    double angle = scanner.nextDouble();
+                    operation.result = operation.sine(angle);
+                    operation.display();
+                    break;
+                case 7:
+                    System.out.print("Enter angle in degrees: ");
+                    angle = scanner.nextDouble();
+                    operation.result = operation.cosine(angle);
+                    operation.display();
+                    break;
+                case 8:
+                    System.out.print("Enter angle in degrees: ");
+                    angle = scanner.nextDouble();
+                    operation.result = operation.tan(angle);
+                    operation.display();
+                    break;
+                case 9:
+                    System.out.println("Exiting...");
+                    scanner.close();
+                    return;
+                default:
+                    System.out.println("Invalid choice. Please try again.");
+            }
+        }
+    }
+}
