@@ -1,0 +1,79 @@
+import java.util.Scanner;
+
+// Custom exceptions
+class LengthException extends Exception {
+    public LengthException(String message) {
+        super(message);
+    }
+}
+
+class FailedException extends Exception {
+    public FailedException(String message) {
+        super(message);
+    }
+}
+
+class FirstClassException extends Exception {
+    public FirstClassException(String message) {
+        super(message);
+    }
+}
+
+// Interface for student operations
+interface StudentOperations {
+    void getStudentDetails() throws LengthException, FailedException, FirstClassException;
+    void displayStudentDetails();
+}
+
+// Student class implementing the interface
+class Student implements StudentOperations {
+    private String name;
+    private int[] marks = new int[3];
+    private double average;
+
+    @Override
+    public void getStudentDetails() throws LengthException, FailedException, FirstClassException {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter student name: ");
+        name = scanner.nextLine();
+        if (name.length() > 7) {
+            throw new LengthException("Name length is greater than 7");
+        }
+
+        System.out.println("Enter marks for 3 subjects:");
+        for (int i = 0; i < 3; i++) {
+            marks[i] = scanner.nextInt();
+        }
+
+        average = (marks[0] + marks[1] + marks[2]) / 3.0;
+        if (average < 50) {
+            throw new FailedException("Average marks are less than 50");
+        } else if (average > 75) {
+            throw new FirstClassException("Average marks are greater than 75");
+        }
+    }
+
+    @Override
+    public void displayStudentDetails() {
+        System.out.println("Student Name: " + name);
+        System.out.println("Marks: ");
+        for (int mark : marks) {
+            System.out.print(mark + " ");
+        }
+        System.out.println("\nAverage Marks: " + average);
+    }
+}
+
+public class StudentInformationSystem {
+    public static void main(String[] args) {
+        Student student = new Student();
+        try {
+            student.getStudentDetails();
+        } catch (LengthException | FailedException | FirstClassException e) {
+            System.out.println("Exception: " + e.getMessage());
+        } finally {
+            student.displayStudentDetails();
+        }
+    }
+}
