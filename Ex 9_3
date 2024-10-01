@@ -1,0 +1,40 @@
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+
+public class MaxOccurrenceWordReplace {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter a string:");
+        String input = scanner.nextLine();
+        scanner.close();
+
+        // Split the input string into words
+        String[] words = input.split("\\s+");
+
+        // Create a HashMap to store the frequency of each word
+        Map<String, Integer> wordCount = new HashMap<>();
+
+        // Count the frequency of each word
+        for (String word : words) {
+            wordCount.put(word, wordCount.getOrDefault(word, 0) + 1);
+        }
+
+        // Find the word with the maximum occurrence
+        String maxWord = null;
+        int maxCount = 0;
+        for (Map.Entry<String, Integer> entry : wordCount.entrySet()) {
+            if (entry.getValue() > maxCount) {
+                maxWord = entry.getKey();
+                maxCount = entry.getValue();
+            }
+        }
+
+        // Replace the word with the maximum occurrence with '*'
+        String result = input.replaceAll("\\b" + maxWord + "\\b", "*");
+
+        // Print the result
+        System.out.println("Original string: " + input);
+        System.out.println("Modified string: " + result);
+    }
+}
