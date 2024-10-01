@@ -1,0 +1,36 @@
+import java.util.Scanner;
+
+// Custom checked exception
+class InvalidIntegerException extends Exception {
+    public InvalidIntegerException(String message) {
+        super(message);
+    }
+}
+
+public class ArrayInitialization {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int[] array = new int[5];
+
+        try {
+            for (int i = 0; i < array.length; i++) {
+                System.out.print("Enter an integer between 1 and 100: ");
+                int value = scanner.nextInt();
+                if (value < 1 || value > 100) {
+                    throw new InvalidIntegerException("integer is not in range");
+                }
+                array[i] = value;
+            }
+        } catch (InvalidIntegerException e) {
+            System.out.println("Exception caught: " + e.getMessage());
+        } finally {
+            System.out.println("Array initialization attempt completed.");
+        }
+
+        // Display the array
+        System.out.println("Array contents:");
+        for (int i : array) {
+            System.out.print(i + " ");
+        }
+    }
+}
