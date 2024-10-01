@@ -1,0 +1,65 @@
+abstract class Employee {
+    protected String emp_name;
+    protected String designation;
+    protected double salary;
+
+    public Employee(String emp_name, String designation, double salary) {
+        this.emp_name = emp_name;
+        this.designation = designation;
+        this.salary = salary;
+    }
+
+    public abstract void calcRaise();
+
+    public void display() {
+        System.out.println("Name: " + emp_name);
+        System.out.println("Designation: " + designation);
+        System.out.println("Salary: " + salary);
+    }
+}
+
+class Manager extends Employee {
+    private double bonus;
+
+    public Manager(String emp_name, double salary, double bonus) {
+        super(emp_name, "Manager", salary);
+        this.bonus = bonus;
+    }
+
+    @Override
+    public void calcRaise() {
+        salary += salary * 0.05 + bonus;
+    }
+}
+
+class Developer extends Employee {
+    private int no_pgms;
+
+    public Developer(String emp_name, double salary, int no_pgms) {
+        super(emp_name, "Developer", salary);
+        this.no_pgms = no_pgms;
+    }
+
+    @Override
+    public void calcRaise() {
+        salary += salary * 0.05 + no_pgms * 25;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Manager manager = new Manager("Alice", 50000, 5000);
+        Developer developer = new Developer("Bob", 40000, 10);
+
+        System.out.println("Before Raise:");
+        manager.display();
+        developer.display();
+
+        manager.calcRaise();
+        developer.calcRaise();
+
+        System.out.println("\nAfter Raise:");
+        manager.display();
+        developer.display();
+    }
+}
