@@ -1,0 +1,69 @@
+import java.util.Scanner;
+
+class Cube {
+    private double side;
+
+    public Cube(double side) {
+        this.side = side;
+    }
+
+    public double calculateVolume() {
+        return Math.pow(side, 3);
+    }
+}
+
+class Rectangle {
+    private double length;
+    private double width;
+    private double height;
+
+    public Rectangle(double length, double width, double height) {
+        this.length = length;
+        this.width = width;
+        this.height = height;
+    }
+
+    public double calculateVolume() {
+        return length * width * height;
+    }
+}
+
+class Sphere {
+    private double radius;
+
+    public Sphere(double radius) {
+        this.radius = radius;
+    }
+
+    public double calculateVolume() {
+        return (4.0 / 3.0) * Math.PI * Math.pow(radius, 3);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Cube volume calculation
+        System.out.print("Enter the side length of the cube: ");
+        double cubeSide = scanner.nextDouble();
+        Cube cube = new Cube(cubeSide);
+        System.out.println("Volume of the cube: " + cube.calculateVolume());
+
+        // Rectangle volume calculation
+        System.out.print("Enter the length, width, and height of the rectangle: ");
+        double length = scanner.nextDouble();
+        double width = scanner.nextDouble();
+        double height = scanner.nextDouble();
+        Rectangle rectangle = new Rectangle(length, width, height);
+        System.out.println("Volume of the rectangle: " + rectangle.calculateVolume());
+
+        // Sphere volume calculation
+        System.out.print("Enter the radius of the sphere: ");
+        double radius = scanner.nextDouble();
+        Sphere sphere = new Sphere(radius);
+        System.out.println("Volume of the sphere: " + sphere.calculateVolume());
+
+        scanner.close();
+    }
+}
