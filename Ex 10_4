@@ -1,0 +1,48 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class ChoiceListExample extends JFrame {
+    private JLabel choiceLabel;
+    private JComboBox<String> choiceList;
+    private JTextField textField;
+
+    public ChoiceListExample() {
+        // Set up the frame
+        setTitle("Choice List Example");
+        setSize(300, 200);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLayout(new FlowLayout());
+
+        // Create label and choice list
+        choiceLabel = new JLabel("Choose an item:");
+        choiceList = new JComboBox<>(new String[]{"DATA MANAGEMENT SYSTEM", "OBJECT ORIENTED PROGRAMING LANGUAGE", "MATHEMATICS"});
+        textField = new JTextField(15);
+
+        // Add action listener to choice list
+        choiceList.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String selectedItem = (String) choiceList.getSelectedItem();
+                textField.setText(selectedItem);
+            }
+        });
+
+        // Add components to frame
+        add(choiceLabel);
+        add(choiceList);
+        add(new JLabel("Selected item:"));
+        add(textField);
+    }
+
+    public static void main(String[] args) {
+        // Create and display the frame
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                new ChoiceListExample().setVisible(true);
+            }
+        });
+    }
+}
