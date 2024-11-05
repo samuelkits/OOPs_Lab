@@ -1,0 +1,59 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class ButtonFrame extends JFrame {
+    private JLabel label;
+    private JButton yesButton, noButton, closeButton;
+
+    public ButtonFrame() {
+        // Set up the frame
+        setTitle("Button Frame Example");
+        setSize(300, 200);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLayout(new FlowLayout());
+
+        // Create label
+        label = new JLabel("Press a button");
+        add(label);
+
+        // Create buttons
+        yesButton = new JButton("Yes");
+        noButton = new JButton("No");
+        closeButton = new JButton("Close");
+
+        // Add action listeners to buttons
+        yesButton.addActionListener(new ButtonActionListener());
+        noButton.addActionListener(new ButtonActionListener());
+        closeButton.addActionListener(new ButtonActionListener());
+
+        // Add buttons to frame
+        add(yesButton);
+        add(noButton);
+        add(closeButton);
+    }
+
+    private class ButtonActionListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if (e.getSource() == yesButton) {
+                label.setText("Button Yes is pressed");
+            } else if (e.getSource() == noButton) {
+                label.setText("Button No is pressed");
+            } else if (e.getSource() == closeButton) {
+                System.exit(0);
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        // Create and display the frame
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                new ButtonFrame().setVisible(true);
+            }
+        });
+    }
+}
